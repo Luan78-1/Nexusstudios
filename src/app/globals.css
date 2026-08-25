@@ -35,7 +35,8 @@
  * conteúdo estático, em opacidade total, sem nenhuma animação.
  */
 @layer components {
-  .reveal {
+  .reveal,
+  .line-rise {
     --d: 0ms;
   }
 
@@ -60,6 +61,16 @@
       }
     }
 
+    /* A "graça": cada linha da headline sobe de dentro de um clip. */
+    @keyframes line-rise {
+      from {
+        transform: translateY(112%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
     .reveal {
       opacity: 0;
       animation: reveal-rise 560ms cubic-bezier(0.4, 0, 0.2, 1) both;
@@ -69,6 +80,11 @@
     .reveal-line {
       transform-origin: left center;
       animation: reveal-line 560ms cubic-bezier(0.4, 0, 0.2, 1) both;
+      animation-delay: var(--d);
+    }
+
+    .line-rise {
+      animation: line-rise 640ms cubic-bezier(0.4, 0, 0.2, 1) both;
       animation-delay: var(--d);
     }
   }

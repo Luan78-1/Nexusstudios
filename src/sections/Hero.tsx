@@ -8,18 +8,19 @@ const delay = (ms: number) => ({ "--d": `${ms}ms` } as CSSProperties);
 const linkMotion =
   "transition-[transform,border-color,color] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]";
 
+/** Headline em 3 linhas — cada uma sobe de dentro de um clip (a "graça"). */
+const HEADLINE = [
+  "Clareza jurídica para",
+  "decisões que não podem",
+  "ser tomadas no escuro.",
+];
+
 export default function Hero() {
   return (
-    <section id="inicio" className="relative border-t border-line">
-      {/* Painel navy sangrando na metade direita (desktop) */}
-      <div
-        className="absolute inset-y-0 right-0 hidden w-1/2 bg-navy lg:block"
-        aria-hidden
-      />
-
-      <div className="relative mx-auto grid max-w-shell grid-cols-1 lg:min-h-[88vh] lg:grid-cols-2">
-        {/* ESQUERDA — bloco editorial claro, headline protagonista */}
-        <div className="flex flex-col justify-center px-6 py-16 sm:px-8 lg:py-20 lg:pr-14">
+    <section id="inicio" className="relative overflow-hidden border-t border-line">
+      <div className="mx-auto grid max-w-shell grid-cols-1 lg:min-h-[88vh] lg:grid-cols-[3fr_2fr]">
+        {/* ESQUERDA — bloco editorial claro, headline protagonista (60%) */}
+        <div className="flex flex-col justify-center px-6 py-16 sm:px-8 lg:py-20 lg:pr-16">
           <div className="flex items-center gap-3">
             <span
               className="reveal-line h-px w-8 bg-navy"
@@ -34,18 +35,19 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1
-            className="reveal mt-9 font-display text-[2.7rem] leading-[1.03] tracking-[-0.015em] text-ink sm:text-[3.4rem] lg:text-[4.3rem] lg:leading-[0.98]"
-            style={delay(200)}
-          >
-            Clareza jurídica para
-            <br className="hidden sm:block" /> decisões que não podem
-            <br className="hidden sm:block" /> ser tomadas no escuro.
+          <h1 className="mt-9 font-display text-[2.7rem] leading-[1.03] tracking-[-0.015em] text-ink sm:text-[3.5rem] lg:text-[4.6rem] lg:leading-[0.98]">
+            {HEADLINE.map((line, i) => (
+              <span key={i} className="block overflow-hidden pb-[0.06em]">
+                <span className="line-rise block" style={delay(180 + i * 90)}>
+                  {line}
+                </span>
+              </span>
+            ))}
           </h1>
 
           <p
             className="reveal mt-8 max-w-md text-base leading-relaxed text-muted lg:text-[1.05rem]"
-            style={delay(320)}
+            style={delay(480)}
           >
             Atuação jurídica conduzida com análise, estratégia e comunicação
             direta em cada etapa.
@@ -53,7 +55,7 @@ export default function Hero() {
 
           <div
             className="reveal mt-11 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-9"
-            style={delay(420)}
+            style={delay(580)}
           >
             <a
               href={site.cta.schedule.href}
@@ -91,8 +93,14 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* DIREITA — painel navy com retrato e informação profissional */}
+        {/* DIREITA — painel navy sangrando (40%) com retrato e informação profissional */}
         <div className="relative flex flex-col justify-center bg-navy px-6 py-16 text-cream sm:px-8 lg:bg-transparent lg:py-20 lg:pl-14">
+          {/* Sangria do navy até a borda direita da viewport (desktop). */}
+          <div
+            className="absolute inset-y-0 left-0 -right-[50vw] -z-10 hidden bg-navy lg:block"
+            aria-hidden
+          />
+
           {/*
             Placeholder para a fotografia real da Dra. Naila (proporção 4/5).
             Para inserir a foto definitiva, substituir o conteúdo interno por:
@@ -103,8 +111,8 @@ export default function Hero() {
                    className="object-cover" />
           */}
           <div
-            className="reveal relative aspect-[4/5] w-full max-w-md bg-white/[0.04] ring-1 ring-white/15"
-            style={delay(300)}
+            className="reveal relative aspect-[4/5] w-full max-w-md bg-white/[0.04] ring-1 ring-white/15 transition-shadow duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:ring-white/30"
+            style={delay(360)}
           >
             <div className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-5">
               <span className="h-px w-5 bg-cream/40" aria-hidden />
@@ -116,7 +124,7 @@ export default function Hero() {
 
           <div
             className="reveal mt-6 max-w-md space-y-2 border-t border-white/15 pt-4"
-            style={delay(520)}
+            style={delay(640)}
           >
             <p className="text-[13px] font-medium tracking-wide text-cream">
               {site.lawyer.fullName}
