@@ -18,11 +18,11 @@
   }
 
   ::selection {
-    @apply bg-petrol text-paper;
+    @apply bg-navy text-cream;
   }
 
   :focus-visible {
-    outline: 2px solid theme("colors.petrol.DEFAULT");
+    outline: 2px solid theme("colors.navy.DEFAULT");
     outline-offset: 3px;
   }
 }

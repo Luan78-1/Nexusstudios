@@ -2,22 +2,24 @@ import type { Config } from "tailwindcss";
 
 /**
  * Direção visual — Naila Figueiredo · Advocacia
- * Editorial, assimétrico, cantos retos, sem sombra/gradiente.
- * Verde petróleo é a cor de assinatura: usar de forma controlada.
+ * Confiança e profissionalismo: azul-marinho profundo (assinatura) ancorado
+ * por neutros quentes (off-white + pedra). Editorial, assimétrico, cantos retos,
+ * sem sombra/gradiente. Painel navy sangrando compõe o contraste do Hero.
  */
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#101313",
-        paper: "#FFFFFF",
-        mist: "#F3F4F3",
-        muted: "#626867",
-        line: "#D8DDDC",
-        petrol: {
-          DEFAULT: "#123C3A",
-          hover: "#19504D",
+        ink: "#111318",
+        paper: "#FCFBF9",
+        stone: "#ECE8E1",
+        cream: "#EDEAE3",
+        muted: "#5B6472",
+        line: "#DED9D0",
+        navy: {
+          DEFAULT: "#16233B",
+          hover: "#26385A",
         },
       },
       fontFamily: {

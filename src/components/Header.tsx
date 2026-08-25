@@ -21,6 +21,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper">
+      <div className="h-[3px] w-full bg-navy" aria-hidden />
       <div className="mx-auto flex max-w-shell items-center justify-between px-6 py-5 lg:px-10">
         <a
           href="#inicio"
@@ -51,10 +52,10 @@ export default function Header() {
         <div className="hidden lg:block">
           <a
             href={site.cta.schedule.href}
-            className="group inline-flex items-center gap-1.5 text-[13px] font-medium text-petrol"
+            className="group inline-flex items-center gap-1.5 text-[13px] font-medium text-navy"
           >
             <span
-              className={`border-b border-petrol/40 pb-0.5 group-hover:border-petrol ${motion}`}
+              className={`border-b border-navy/40 pb-0.5 group-hover:border-navy ${motion}`}
             >
               Agendar consulta
             </span>
@@ -99,10 +100,10 @@ export default function Header() {
             <a
               href={site.cta.schedule.href}
               onClick={() => setOpen(false)}
-              className="reveal mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-petrol"
+              className="reveal mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-navy"
               style={{ "--d": `${site.nav.length * 50}ms` } as CSSProperties}
             >
-              <span className="border-b border-petrol/50 pb-1">Agendar consulta</span>
+              <span className="border-b border-navy/50 pb-1">Agendar consulta</span>
               <span aria-hidden>↗</span>
             </a>
           </nav>
