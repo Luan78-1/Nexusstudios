@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 import { Menu, X } from "lucide-react";
 import { site } from "@/data/site";
+
+/** Hover Premium: easing de assinatura, sem overshoot (motion-design skill). */
+const motion =
+  "transition-[transform,border-color,color] duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -36,7 +41,7 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-[13px] text-ink/75 transition-colors hover:text-ink"
+              className={`text-[13px] text-ink/75 hover:text-ink ${motion}`}
             >
               {item.label}
             </a>
@@ -48,12 +53,14 @@ export default function Header() {
             href={site.cta.schedule.href}
             className="group inline-flex items-center gap-1.5 text-[13px] font-medium text-petrol"
           >
-            <span className="border-b border-petrol/40 pb-0.5 transition-colors group-hover:border-petrol">
+            <span
+              className={`border-b border-petrol/40 pb-0.5 group-hover:border-petrol ${motion}`}
+            >
               Agendar consulta
             </span>
             <span
               aria-hidden
-              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className={`group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${motion}`}
             >
               ↗
             </span>
@@ -78,12 +85,13 @@ export default function Header() {
             className="mx-auto flex max-w-shell flex-col px-6 pb-8 pt-2"
             aria-label="Navegação mobile"
           >
-            {site.nav.map((item) => (
+            {site.nav.map((item, i) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line/70 py-4 font-display text-2xl text-ink"
+                className="reveal border-b border-line/70 py-4 font-display text-2xl text-ink"
+                style={{ "--d": `${i * 50}ms` } as CSSProperties}
               >
                 {item.label}
               </a>
@@ -91,7 +99,8 @@ export default function Header() {
             <a
               href={site.cta.schedule.href}
               onClick={() => setOpen(false)}
-              className="mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-petrol"
+              className="reveal mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-petrol"
+              style={{ "--d": `${site.nav.length * 50}ms` } as CSSProperties}
             >
               <span className="border-b border-petrol/50 pb-1">Agendar consulta</span>
               <span aria-hidden>↗</span>
