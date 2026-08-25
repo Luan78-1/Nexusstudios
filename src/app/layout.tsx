@@ -32,7 +32,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${geist.variable} ${instrumentSerif.variable}`}>
-      <body>{children}</body>
+      <body>
+        <noscript>
+          {/* Sem JS, o reveal-on-scroll não roda: mostra tudo estático. */}
+          <style>{`.reveal-up{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }
