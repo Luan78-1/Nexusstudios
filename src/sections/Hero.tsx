@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { site } from "@/data/site";
 import type { CSSProperties } from "react";
 
@@ -94,12 +95,26 @@ export default function Hero() {
         </div>
 
         {/* DIREITA — painel navy sangrando (40%) com retrato e informação profissional */}
-        <div className="relative flex flex-col justify-center bg-navy px-6 py-16 text-cream sm:px-8 lg:bg-transparent lg:py-20 lg:pl-14">
-          {/* Sangria do navy até a borda direita da viewport (desktop). */}
+        <div className="relative flex flex-col justify-center px-6 py-16 text-cream sm:px-8 lg:py-20 lg:pl-14">
+          {/* Fundo: skyline tratada em navy (atmosfera corporativa), sangrando à
+              direita no desktop. A camada multiply tinge a foto de navy; o scrim
+              inferior garante a legibilidade do OAB. */}
           <div
-            className="absolute inset-y-0 left-0 -right-[50vw] -z-10 hidden bg-navy lg:block"
+            className="absolute inset-0 -z-10 overflow-hidden bg-navy lg:-right-[50vw]"
             aria-hidden
-          />
+          >
+            <Image
+              src="/hero-skyline.png"
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-navy/70 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-navy/25" />
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy via-navy/60 to-transparent" />
+          </div>
 
           {/*
             Placeholder para a fotografia real da Dra. Naila (proporção 4/5).
@@ -111,7 +126,7 @@ export default function Hero() {
                    className="object-cover" />
           */}
           <div
-            className="reveal relative aspect-[4/5] w-full max-w-md bg-white/[0.04] ring-1 ring-white/15 transition-shadow duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:ring-white/30"
+            className="reveal relative aspect-[4/5] w-full max-w-md bg-navy/40 ring-1 ring-white/20 backdrop-blur-[1px] transition-shadow duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:ring-white/35"
             style={delay(360)}
           >
             <div className="absolute inset-x-0 bottom-0 flex items-center gap-2 p-5">
